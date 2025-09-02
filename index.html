@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TorgiHub | Ваш рост - наша стратегия</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+      color: #ffffff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      padding: 20px 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      margin-right: 50px;
+    }
+
+    .tagline {
+      font-size: 1rem;
+      color: #a0a0a0;
+      margin-left: 20px;
+      white-space: nowrap;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      background: rgba(204, 255, 0, 0.1);
+      color: #ccff00;
+    }
+
+    .nav-link.active {
+      background: rgba(204, 255, 0, 0.15);
+      color: #ccff00;
+    }
+
+    /* Mobile menu toggle */
+    .mobile-menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .mobile-menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: #ccff00;
+      margin: 3px 0;
+      transition: 0.3s;
+    }
+
+    /* Responsive navigation */
+    @media (max-width: 768px) {
+      .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 50px;
+        transition: left 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .nav-menu.active {
+        left: 0;
+      }
+
+      .nav-link {
+        font-size: 1.2rem;
+        margin: 10px 0;
+        padding: 15px 30px;
+      }
+
+      .mobile-menu-toggle {
+        display: flex;
+      }
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ccff00 0%, #80ff00 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .logo-image {
+      display: none; /* скрываем SVG логотип */
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ccff00 0%, #80ff00 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      font-size: 1rem;
+      color: #a0a0a0;
+      margin-left: 20px;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 140px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse at center, rgba(204, 255, 0, 0.15) 0%, transparent 50%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      background: linear-gradient(135deg, #ccff00 0%, #80ff00 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-features {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .feature-icon {
+      width: 8px;
+      height: 8px;
+      background: linear-gradient(135deg, #ccff00 0%, #80ff00 100%);
+      border-radius: 50%;
+      margin-right: 15px;
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+
+    .cta-section {
+      text-align: center;
+      margin: 50px 0;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      padding: 18px 35px;
+      background: linear-gradient(135deg, #ccff00 0%, #80ff00 100%);
+      color: #000000;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(204, 255, 0, 0.3);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(204, 255, 0, 0.4);
+    }
+
+    .important-note {
+      background: rgba(255, 193, 7, 0.1);
+      border: 1px solid rgba(255, 193, 7, 0.3);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 30px 0;
+      text-align: center;
+    }
+
+    .important-note strong {
+      color: #ffc107;
+    }
+
+    /* Examples Section */
+    .examples-section {
+      padding: 80px 0;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 50px;
+      background: linear-gradient(135deg, #ccff00 0%, #80ff00 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Examples Section - Original Dynamic Version */
+    .examples-section {
+      padding: 80px 0;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .examples-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .examples-track {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+      margin-top: 50px;
+    }
+
+    .example-card {
+      background: linear-gradient(135deg, rgba(204, 255, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+      padding: 40px;
+      border-radius: 20px;
+      border: 2px solid rgba(204, 255, 0, 0.3);
+      backdrop-filter: blur(20px);
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .example-card.animate-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .example-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(204, 255, 0, 0.5);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+    }
+
+    .example-card.animate-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .example-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(204, 255, 0, 0.5);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+    }
+
+    .example-card-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      display: block;
+      background: linear-gradient(135deg, #ccff00 0%, #80ff00 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .example-card h3 {
+      font-size: 1.8rem;
+      color: #ccff00;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+
+    .example-card .price-info {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 15px;
+      border-radius: 12px;
+      margin-top: 20px;
+      border: 1px solid rgba(204, 255, 0, 0.2);
+    }
+
+    .example-card .price-old {
+      color: #ff6b6b;
+      text-decoration: line-through;
+      font-size: 1rem;
+      display: block;
+    }
+
+    .example-card .price-new {
+      color: #ccff00;
+      font-size: 1.3rem;
+      font-weight: 700;
+      display: block;
+      margin-top: 5px;
+    }
+
+    .example-card .profit {
+      color: #4ecdc4;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: 10px;
+      display: block;
+    }
+
+    /* How We Work Section */
+    .how-we-work {
+      padding: 80px 0;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .work-steps {
+      display: grid;
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .step {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 12px;
+      border-left: 4px solid;
+      border-image: linear-gradient(135deg, #ccff00 0%, #80ff00 100%) 1;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero {
+      padding: 140px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: url("images/tower3.png") no-repeat center center / cover;
+    }
+
+    .step h3 {
+      color: #ccff00;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+
+    .step-example {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 10px;
+      font-style: italic;
+      color: #a0a0a0;
+    }
+
+    /* Guarantees Section */
+    .guarantees {
+      padding: 80px 0;
+      position: relative;
+      background: url("images/cars.jpg") no-repeat center center / cover;
+      color: #fff;
+    }
+
+    .guarantees::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.6); /* затемнение */
+      z-index: 0;
+    }
+
+    .guarantees .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .guarantees-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .guarantee-item {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .guarantee-item:hover {
+      border-color: rgba(204, 255, 0, 0.5);
+      transform: translateY(-3px);
+    }
+
+    .guarantee-item h3 {
+      color: #ccff00;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    /* Property Types Section */
+    .property-types {
+      padding: 80px 0;
+    }
+
+    .types-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 50px;
+    }
+
+    .type-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .type-card:hover {
+      border-color: rgba(204, 255, 0, 0.5);
+      transform: translateY(-3px);
+    }
+
+    .type-card h3 {
+      color: #ccff00;
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+
+    .process-section {
+      padding: 80px 0;
+      position: relative;
+      background: url("images/house1.jpg") no-repeat center center / cover;
+      color: #fff;
+    }
+
+    .process-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 0;
+    }
+
+    .process-section .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .process-steps {
+      display: grid;
+      gap: 25px;
+      margin-top: 50px;
+    }
+
+    .process-step {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .process-step h3 {
+      color: #ccff00;
+      margin-bottom: 10px;
+    }
+
+    /* Contact Form */
+    .contact-section {
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .contact-form {
+      max-width: 500px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 40px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #a0a0a0;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.3);
+      color: white;
+      font-size: 1rem;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #ccff00;
+      box-shadow: 0 0 0 2px rgba(204, 255, 0, 0.2);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(135deg, #ccff00 0%, #80ff00 100%);
+      color: #000000;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(204, 255, 0, 0.3);
+    }
+
+    /* Footer */
+    footer {
+      padding: 50px 0;
+      background: rgba(0, 0, 0, 0.5);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .footer-section h3 {
+      color: #667eea;
+      margin-bottom: 15px;
+    }
+
+    .footer-section p, .footer-section a {
+      color: #a0a0a0;
+      text-decoration: none;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .footer-section a:hover {
+      color: #667eea;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+        white-space: normal;
+        word-break: break-word;
+        max-width: 90%;
+        margin: 0 auto 20px;
+        line-height: 1.3;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .container {
+        padding: 0 15px;
+      }
+
+      /* Examples section mobile */
+      .examples-section {
+        height: auto; /* пусть растягивается по контенту */
+        padding: 40px 0;
+      }
+
+      .examples-container {
+        position: relative;
+        top: auto;
+        transform: none;
+        height: auto;
+        padding: 0 15px;
+      }
+
+      .examples-track {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .example-card {
+        max-width: 100%;
+        width: 100%;
+        padding: 25px 20px;
+      }
+
+      .example-card-icon {
+        font-size: 2.5rem;
+      }
+
+      .example-card h3 {
+        font-size: 1.4rem;
+      }
+
+      /* Mobile menu responsive fixes */
+      .tagline {
+        display: none;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+      }
+
+      /* --- New rules for mobile examples --- */
+      .examples-track {
+        display: flex;
+        flex-direction: column;
+        gap: 20px; /* расстояние между карточками */
+      }
+
+      .example-card {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .example-card.animate-in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .example-card:hover {
+        transform: none;
+      }
+    }
+  </style>
+  <link rel="icon" href="images/logo.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="images/logo.ico"></head>
+<body>
+<header>
+  <div class="container">
+    <div class="header-content">
+      <div class="logo-container">
+        <div class="logo">TorgiHub</div>
+        <div class="tagline">| Ваш рост - наша стратегия</div>
+      </div>
+
+      <nav class="nav-menu" id="navMenu">
+        <a href="#hero" class="nav-link">Главная</a>
+        <a href="#examples" class="nav-link">Примеры</a>
+        <a href="#how-we-work" class="nav-link">Как&nbsp;работаем</a>
+        <a href="#guarantees" class="nav-link">Гарантии</a>
+        <a href="#property-types" class="nav-link">Имущество</a>
+        <a href="#contact" class="nav-link">Контакты</a>
+      </nav>
+
+      <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Инвестируй в торги по банкротству с нами</h1>
+
+      <div class="hero-features">
+        <div class="feature-item">
+          <div class="feature-icon"></div>
+          <div>Находим самые прибыльные объекты на торгах по банкротству и арестованному имуществу</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"></div>
+          <div>Инвестор получает имущество по договору, 100% безопасность ваших средств</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"></div>
+          <div>Сопровождаем сделку по закону в рамках 127-ФЗ</div>
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <a href="https://t.me/TorgiHub" class="cta-button" target="_blank">
+          📱 Каталог инвестиционных лотов в Telegram
+        </a>
+      </div>
+
+      <div class="important-note">
+        <strong>Важное замечание!</strong><br>
+        Инвестором может быть не только предприниматель, но и обычные Физ. Лица.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="examples-section" id="examples">
+  <div class="container">
+    <h2 class="section-title">Примеры наших выигранных лотов</h2>
+
+    <div class="examples-container">
+      <div class="examples-track" id="examplesTrack">
+        <div class="example-card" data-index="0">
+          <span class="example-card-icon">🚗</span>
+          <h3>Chevrolet NIVA 2016</h3>
+          <p>Внедорожник в отличном техническом состоянии. Выкуплен на торгах по банкротству со значительной скидкой.</p>
+          <div class="price-info">
+            <span class="price-old">Рыночная цена: 650.000₽</span>
+            <span class="price-new">Цена выкупа: 320.000₽</span>
+            <span class="profit">Прибыль: 330.000₽</span>
+          </div>
+        </div>
+
+        <div class="example-card" data-index="1">
+          <span class="example-card-icon">🚙</span>
+          <h3>Ford Focus 3 2011</h3>
+          <p>Седан в хорошем состоянии. После косметического ремонта продан по рыночной стоимости.</p>
+          <div class="price-info">
+            <span class="price-old">Рыночная цена: 450.000₽</span>
+            <span class="price-new">Цена выкупа: 218.000₽</span>
+            <span class="profit">Прибыль: 232.000₽</span>
+          </div>
+        </div>
+
+        <div class="example-card" data-index="2">
+          <span class="example-card-icon">🏠</span>
+          <h3>ул. Самойловой 8</h3>
+          <p>Квартира в центральном районе. Отличное местоположение, быстрая продажа.</p>
+          <div class="price-info">
+            <span class="price-old">Рыночная цена: 3.200.000₽</span>
+            <span class="price-new">Цена выкупа: 2.100.000₽</span>
+            <span class="profit">Прибыль: 1.100.000₽</span>
+          </div>
+        </div>
+
+        <div class="example-card" data-index="3">
+          <span class="example-card-icon">🏢</span>
+          <h3>ул. Коминтерна 5</h3>
+          <p>Коммерческое помещение в проходном месте. Высокий потенциал доходности.</p>
+          <div class="price-info">
+            <span class="price-old">Рыночная цена: 5.800.000₽</span>
+            <span class="price-new">Цена выкупа: 3.900.000₽</span>
+            <span class="profit">Прибыль: 1.900.000₽</span>
+          </div>
+        </div>
+
+        <div class="example-card" data-index="4">
+          <span class="example-card-icon">🏘️</span>
+          <h3>ул. Героев Рыбачьего</h3>
+          <p>Трёхкомнатная квартира в спальном районе. Семейное жилье с хорошей планировкой.</p>
+          <div class="price-info">
+            <span class="price-old">Рыночная цена: 4.500.000₽</span>
+            <span class="price-new">Цена выкупа: 2.800.000₽</span>
+            <span class="profit">Прибыль: 1.700.000₽</span>
+          </div>
+        </div>
+
+        <div class="example-card" data-index="5">
+          <span class="example-card-icon">🌲</span>
+          <h3>Квартира в Ревде</h3>
+          <p>Региональная недвижимость с хорошим потенциалом роста стоимости.</p>
+          <div class="price-info">
+            <span class="price-old">Рыночная цена: 2.100.000₽</span>
+            <span class="price-new">Цена выкупа: 1.300.000₽</span>
+            <span class="profit">Прибыль: 800.000₽</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how-we-work" id="how-we-work">
+  <div class="container">
+    <h2 class="section-title">Как мы работаем</h2>
+    <p style="text-align: center; margin-bottom: 30px; font-size: 1.2rem; color: #a0a0a0;">На примере инвестиций в автомобиль</p>
+
+    <div class="work-steps">
+      <div class="step">
+        <h3>📊 АНАЛИЗ РЫНКА</h3>
+        <p>Мы определяем рыночную стоимость объекта</p>
+        <div class="step-example">
+          Пример: Ford Focus 3 2011г. низ рынка цена 450.000₽ данной комплектации
+        </div>
+      </div>
+
+      <div class="step">
+        <h3>🔍 ПОИСК ОБЪЕКТА НИЖЕ РЫНКА</h3>
+        <p>Мы находим аналогичные варианты на торгах по банкротству со скидкой 50% и участвуем в торгах</p>
+        <div class="step-example">
+          В нашем кейсе - цена выкупа 218.000₽
+        </div>
+      </div>
+
+      <div class="step">
+        <h3>💰 ПРИВЛЕЧЕНИЕ ИНВЕСТОРА</h3>
+        <p>Для выкупа авто мы привлекаем инвесторов. То есть вас. Оформляем договор залога - объект находится под вашим полным контролем</p>
+      </div>
+
+      <div class="step">
+        <h3>🔧 ПОВЫШЕНИЕ СТОИМОСТИ</h3>
+        <p>Перед продажей проводим ремонт: косметический или комплексный (при необходимости). Цель - улучшить внешний вид и увеличить ликвидность. Это позволяет продать объект по максимальной рыночной цене</p>
+      </div>
+
+      <div class="step">
+        <h3>💸 ПРОДАЖА ОБЪЕКТА</h3>
+        <p>Находим покупателя по рыночной стоимости - 450.000-500.000₽</p>
+        <div class="step-example">
+          Разница между ценой выкупа составляет прибыль 230.000-280.000₽
+        </div>
+      </div>
+
+      <div class="step">
+        <h3>📈 РАСПРЕДЕЛЕНИЕ ПРИБЫЛИ</h3>
+        <p>После сделки:</p>
+        <ul style="margin-left: 20px; margin-top: 10px;">
+          <li>Инвестор получает прибыль</li>
+          <li>Мы получаем комиссию за сопровождение сделки</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <a href="https://t.me/TorgiHub" class="cta-button" target="_blank">
+        📱 Каталог отобранных лотов
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="guarantees" id="guarantees">
+  <div class="container">
+    <h2 class="section-title">Почему с нами работают и наши гарантии</h2>
+
+    <div class="guarantees-grid">
+      <div class="guarantee-item">
+        <h3>🔐 ЭЦП И АККРЕДИТАЦИЯ</h3>
+        <p>На 52 электронных площадках для участия в торгах</p>
+      </div>
+
+      <div class="guarantee-item">
+        <h3>🛡️ НАДЕЖНОСТЬ</h3>
+        <p>Вы инвестируете в ликвидное имущество под залог, оно переходит в вашу собственность. Стоимость залогового имущества выше суммы инвестиций</p>
+      </div>
+
+      <div class="guarantee-item">
+        <h3>🎯 ВЫБОР</h3>
+        <p>У вас есть возможность самому решить в какой конкретный лот инвестировать</p>
+      </div>
+
+      <div class="guarantee-item">
+        <h3>👁️ ОТКРЫТОСТЬ</h3>
+        <p>Всегда можно приехать на объект торгов и лично посмотреть, во что вы инвестируете</p>
+      </div>
+
+      <div class="guarantee-item">
+        <h3>⚖️ ЮРИДИЧЕСКАЯ БЕЗОПАСНОСТЬ</h3>
+        <p>Работаем только в рамках 127-ФЗ, где нет рисков возврата имущества</p>
+      </div>
+
+      <div class="guarantee-item">
+        <h3>💳 ОПЛАТА</h3>
+        <p>Оплата по факту участие в торгах от 5.000₽. Полная оплата осуществляется по договору по факту победы на торгах</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="property-types" id="property-types">
+  <div class="container">
+    <h2 class="section-title">С чем мы работаем</h2>
+    <p style="text-align: center; margin-bottom: 30px; font-size: 1.2rem; color: #a0a0a0;">Какое имущество есть на торгах</p>
+
+    <div class="types-grid">
+      <div class="type-card">
+        <h3>🏢 Недвижимость</h3>
+        <p>Коммерческие помещения, квартиры, парковочные места, дома, гаражи, офисные здания, магазины, автозаправки, заводы, складские помещения, земельные участки</p>
+      </div>
+
+      <div class="type-card">
+        <h3>🚗 Транспорт</h3>
+        <p>Автомобили, вертолеты, самолеты, суда, запчасти и т.д.</p>
+      </div>
+
+      <div class="type-card">
+        <h3>🚜 Спецтехника</h3>
+        <p>Экскаваторы, погрузчики, бульдозеры, краны, тракторы, самосвалы, фуры, сельхозтехника, станки, оборудование и т.д.</p>
+      </div>
+
+      <div class="type-card">
+        <h3>⚡ Коммуникации</h3>
+        <p>Тепло-, водо- и газоснабжение, трансформаторные станции и пр.</p>
+      </div>
+
+      <div class="type-card">
+        <h3>💻 Офисная техника</h3>
+        <p>Офисная техника и мебель, компьютеры, серверы, системные блоки, мобильные телефоны и т.п.</p>
+      </div>
+
+      <div class="type-card">
+        <h3>📈 Ценные бумаги</h3>
+        <p>Акции, облигации, векселя</p>
+      </div>
+
+      <div class="type-card">
+        <h3>💰 Долговые обязательства</h3>
+        <p>Права требования, дебиторская задолженность</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process-section">
+  <div class="container">
+    <h2 class="section-title">Как происходит участие в торгах</h2>
+    <p style="text-align: center; margin-bottom: 30px; font-size: 1.1rem; color: #a0a0a0;">
+      Участие в торгах регламентируется федеральным законом "О несостоятельности (банкротстве)"
+      от 26.10.2002 N 127-ФЗ статья 110. Процесс проходит наглядно с доступом ко всей документации и протоколам торгов.
+    </p>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <h3>🔍 Изучение состояния имущества</h3>
+        <p>Объект торгов всегда доступен для проведения диагностики и определения технического состояния</p>
+      </div>
+
+      <div class="process-step">
+        <h3>💳 Внесение задатка и подача заявки</h3>
+        <p>Внесение задатка и оформление всей необходимой документации для участия в торгах. Оплата задатка регламентируется федеральным законом №127-ФЗ статья 110 и является обязательным условием для участия в торгах. В случае проигрыша задаток возвращается плательщику в полном размере в течение 5 дней с момента публикации протокола о результатах торгов.</p>
+      </div>
+
+      <div class="process-step">
+        <h3>📋 Подписание договора в случае выигрыша</h3>
+        <p>Подписание договора производится в течение 5 рабочих дней с момента публикации протокола о результатах торгов. Проект договора прилагается к конкурсной документации и находится в открытом доступе</p>
+      </div>
+
+      <div class="process-step">
+        <h3>💰 Оплата и передача имущества</h3>
+        <p>Оплата по договору осуществляется в течение 30 дней с момента подписания договора. Передача имущества производится согласно договору купли-продажи</p>
+      </div>
+    </div>
+
+    <div style="background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 12px; margin-top: 40px; text-align: center;">
+      <h3 style="color: #ccff00; margin-bottom: 20px;">Наши преимущества</h3>
+      <div style="display: grid; gap: 15px;">
+        <p>✅ Бесплатная консультация по вопросам, связанным с участием в электронных торгах</p>
+        <p>✅ Оформление и подача заявки на участие (Подготовка полного пакета документов и их подача в соответствии с требованиями организатора торгов)</p>
+        <p>✅ Участие от лица клиента (участие от лица заказчика на основании доверенности)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="container">
+    <h2 class="section-title">Остались вопросы?</h2>
+    <p style="margin-bottom: 40px; font-size: 1.1rem; color: #a0a0a0;">Оставьте заявку и мы свяжемся с вами для консультации</p>
+
+    <div class="contact-form">
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label for="name">Ваше имя</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Номер телефона</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        <button type="submit" class="submit-btn">Отправить заявку</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Контакты</h3>
+        <p>📞 +7 (XXX) XXX-XX-XX</p>
+        <p>📧 info@torgihub.ru</p>
+      </div>
+      <div class="footer-section">
+        <h3>Социальные сети</h3>
+        <a href="https://t.me/TorgiHub" target="_blank">📱 Telegram канал</a>
+        <a href="#">🌐 ВКонтакте</a>
+        <a href="#">📸 Instagram</a>
+      </div>
+      <div class="footer-section">
+        <h3>Офис</h3>
+        <p>📍 г. Екатеринбург</p>
+        <p>ул. Примерная, 123</p>
+        <p>офис 456</p>
+      </div>
+    </div>
+    <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 30px; color: #666;">
+      <p>&copy; 2025 TorgiHub. Все права защищены.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  let exampleCards = [];
+
+  function toggleMobileMenu() {
+    const navMenu = document.getElementById('navMenu');
+    navMenu.classList.toggle('active');
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+
+    alert(`Спасибо, ${name}! Мы свяжемся с вами по номеру ${phone} в ближайшее время.`);
+
+    event.target.reset();
+  }
+
+  // Изначальная динамическая анимация карточек
+  function initExamplesAnimation() {
+    exampleCards = document.querySelectorAll('.example-card');
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -20% 0px',
+      threshold: 0.1
+    };
+
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const cardIndex = Array.from(exampleCards).indexOf(entry.target);
+          setTimeout(() => {
+            entry.target.classList.add('animate-in');
+          }, cardIndex * 200);
+
+          cardObserver.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    exampleCards.forEach(card => {
+      cardObserver.observe(card);
+    });
+  }
+
+  // Плавная прокрутка для якорных ссылок и закрытие мобильного меню
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        // Закрываем мобильное меню
+        document.getElementById('navMenu').classList.remove('active');
+
+        // Плавная прокрутка с учетом фиксированного header'а
+        const headerHeight = document.querySelector('header').offsetHeight;
+        const targetPosition = target.offsetTop - headerHeight;
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // Подсветка активной секции в навигации
+  function highlightActiveSection() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const headerHeight = document.querySelector('header').offsetHeight;
+
+    let current = '';
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - headerHeight - 50;
+      if (scrollY >= sectionTop) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  }
+
+  // Анимация остальных элементов при скролле
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+
+  // Наблюдаем за элементами для анимации (включая example-card)
+  document.querySelectorAll('.step, .guarantee-item, .type-card, .process-step').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'all 0.6s ease';
+    observer.observe(el);
+  });
+
+  // Единый обработчик скролла
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        highlightActiveSection();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  // Инициализация при загрузке страницы
+  window.addEventListener('load', () => {
+    highlightActiveSection();
+    initExamplesAnimation();
+  });
+</script>
+</body>
+</html>
