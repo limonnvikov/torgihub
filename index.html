@@ -280,6 +280,26 @@
       background: rgba(255, 255, 255, 0.02);
     }
 
+    .example-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .example-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), var(--bg-image);
+      background-size: cover;
+      background-position: center;
+      opacity: 0.3;
+      z-index: 0;
+      transition: background-image 0.3s;
+    }
+    .example-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
     .examples-container {
       max-width: 1000px;
       margin: 0 auto;
@@ -358,7 +378,6 @@
 
     .example-card .price-old {
       color: #ff6b6b;
-      text-decoration: line-through;
       font-size: 1rem;
       display: block;
     }
@@ -427,7 +446,6 @@
     .guarantees {
       padding: 80px 0;
       position: relative;
-      background: url("images/cars.jpg") no-repeat center center / cover;
       color: #fff;
     }
 
@@ -506,7 +524,7 @@
     .process-section {
       padding: 80px 0;
       position: relative;
-      background: url("images/house1.jpg") no-repeat center center / cover;
+      background: url("images/money2.png") no-repeat left center / cover;
       color: #fff;
     }
 
@@ -731,7 +749,13 @@
   </style>
   <link rel="icon" href="images/logo.ico" type="image/x-icon">
   <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="images/logo.ico"></head>
+  <link rel="apple-touch-icon" href="images/logo.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+    .step h3 i {
+      color: #ccff00;
+      margin-right: 10px;
+    }
 <body>
 <header>
   <div class="container">
@@ -781,13 +805,13 @@
 
       <div class="cta-section">
         <a href="https://t.me/TorgiHub" class="cta-button" target="_blank">
-          📱 Каталог инвестиционных лотов в Telegram
+          Каталог инвестиционных лотов в Telegram
         </a>
       </div>
 
       <div class="important-note">
         <strong>Важное замечание!</strong><br>
-        Инвестором может быть не только предприниматель, но и обычные Физ. Лица.
+        Вы можете стать инвестором, даже если у вас нет ООО или ИП
       </div>
     </div>
   </div>
@@ -799,69 +823,63 @@
 
     <div class="examples-container">
       <div class="examples-track" id="examplesTrack">
-        <div class="example-card" data-index="0">
-          <span class="example-card-icon">🚗</span>
-          <h3>Chevrolet NIVA 2016</h3>
-          <p>Внедорожник в отличном техническом состоянии. Выкуплен на торгах по банкротству со значительной скидкой.</p>
-          <div class="price-info">
-            <span class="price-old">Рыночная цена: 650.000₽</span>
-            <span class="price-new">Цена выкупа: 320.000₽</span>
-            <span class="profit">Прибыль: 330.000₽</span>
-          </div>
-        </div>
-
-        <div class="example-card" data-index="1">
+        <div class="example-card" data-index="0" data-image="images/focus2011.jpg">
           <span class="example-card-icon">🚙</span>
           <h3>Ford Focus 3 2011</h3>
-          <p>Седан в хорошем состоянии. После косметического ремонта продан по рыночной стоимости.</p>
           <div class="price-info">
-            <span class="price-old">Рыночная цена: 450.000₽</span>
-            <span class="price-new">Цена выкупа: 218.000₽</span>
-            <span class="profit">Прибыль: 232.000₽</span>
+            <span class="price-old">Рыночная цена: 345.000₽</span>
+            <span class="price-new">Цена выкупа: 213.000₽</span>
+            <span class="profit">Прибыль: 132.000₽</span>
           </div>
         </div>
 
-        <div class="example-card" data-index="2">
+<!--        <div class="example-card" data-index="1" data-image="images/focus2011.jpg">-->
+<!--          <span class="example-card-icon">🚙</span>-->
+<!--          <h3>Ford Focus 3 2011</h3>-->
+<!--          <div class="price-info">-->
+<!--            <span class="price-old">Рыночная цена: 450.000₽</span>-->
+<!--            <span class="price-new">Цена выкупа: 218.000₽</span>-->
+<!--            <span class="profit">Прибыль: 232.000₽</span>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="example-card" data-index="2" data-image="images/flat1.jpg">-->
+<!--          <span class="example-card-icon">🏠</span>-->
+<!--          <h3>ул. Самойловой 8</h3>-->
+<!--          <div class="price-info">-->
+<!--            <span class="price-old">Рыночная цена: 3.200.000₽</span>-->
+<!--            <span class="price-new">Цена выкупа: 2.100.000₽</span>-->
+<!--            <span class="profit">Прибыль: 1.100.000₽</span>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="example-card" data-index="3" data-image="images/kominterna5.jpg">-->
+<!--          <span class="example-card-icon">🏢</span>-->
+<!--          <h3>ул. Коминтерна 5</h3>-->
+<!--          <div class="price-info">-->
+<!--            <span class="price-old">Рыночная цена: 5.800.000₽</span>-->
+<!--            <span class="price-new">Цена выкупа: 3.900.000₽</span>-->
+<!--            <span class="profit">Прибыль: 1.900.000₽</span>-->
+<!--          </div>-->
+<!--        </div>-->
+
+        <div class="example-card" data-index="1" data-image="images/flat1.jpg">
           <span class="example-card-icon">🏠</span>
-          <h3>ул. Самойловой 8</h3>
-          <p>Квартира в центральном районе. Отличное местоположение, быстрая продажа.</p>
+          <h3>Комерческое помещение на ул. Героев Рыбачьего</h3>
           <div class="price-info">
-            <span class="price-old">Рыночная цена: 3.200.000₽</span>
-            <span class="price-new">Цена выкупа: 2.100.000₽</span>
-            <span class="profit">Прибыль: 1.100.000₽</span>
+            <span class="price-old">Рыночная цена 2023г: 8.000.000₽</span>
+            <span class="price-new">Цена выкупа 2019г: 3.300.000₽</span>
+            <span class="profit">Прибыль: 4.700.000₽</span>
           </div>
         </div>
 
-        <div class="example-card" data-index="3">
+        <div class="example-card" data-index="2" data-image="images/flat2.jpg">
           <span class="example-card-icon">🏢</span>
-          <h3>ул. Коминтерна 5</h3>
-          <p>Коммерческое помещение в проходном месте. Высокий потенциал доходности.</p>
-          <div class="price-info">
-            <span class="price-old">Рыночная цена: 5.800.000₽</span>
-            <span class="price-new">Цена выкупа: 3.900.000₽</span>
-            <span class="profit">Прибыль: 1.900.000₽</span>
-          </div>
-        </div>
-
-        <div class="example-card" data-index="4">
-          <span class="example-card-icon">🏘️</span>
-          <h3>ул. Героев Рыбачьего</h3>
-          <p>Трёхкомнатная квартира в спальном районе. Семейное жилье с хорошей планировкой.</p>
-          <div class="price-info">
-            <span class="price-old">Рыночная цена: 4.500.000₽</span>
-            <span class="price-new">Цена выкупа: 2.800.000₽</span>
-            <span class="profit">Прибыль: 1.700.000₽</span>
-          </div>
-        </div>
-
-        <div class="example-card" data-index="5">
-          <span class="example-card-icon">🌲</span>
           <h3>Квартира в Ревде</h3>
-          <p>Региональная недвижимость с хорошим потенциалом роста стоимости.</p>
           <div class="price-info">
-            <span class="price-old">Рыночная цена: 2.100.000₽</span>
-            <span class="price-new">Цена выкупа: 1.300.000₽</span>
-            <span class="profit">Прибыль: 800.000₽</span>
+            <span class="price-old">Рыночная цена: 290.000₽</span>
+            <span class="price-new">Цена выкупа: 65.000₽</span>
+            <span class="profit">Прибыль: 225.000₽</span>
           </div>
         </div>
       </div>
@@ -876,7 +894,7 @@
 
     <div class="work-steps">
       <div class="step">
-        <h3>📊 АНАЛИЗ РЫНКА</h3>
+        <h3><i class="fa-solid fa-magnifying-glass"></i> АНАЛИЗ РЫНКА</h3>
         <p>Мы определяем рыночную стоимость объекта</p>
         <div class="step-example">
           Пример: Ford Focus 3 2011г. низ рынка цена 450.000₽ данной комплектации
@@ -884,7 +902,7 @@
       </div>
 
       <div class="step">
-        <h3>🔍 ПОИСК ОБЪЕКТА НИЖЕ РЫНКА</h3>
+        <h3><i class="fa-solid fa-bullseye"></i> ПОИСК ОБЪЕКТА НИЖЕ РЫНКА</h3>
         <p>Мы находим аналогичные варианты на торгах по банкротству со скидкой 50% и участвуем в торгах</p>
         <div class="step-example">
           В нашем кейсе - цена выкупа 218.000₽
@@ -892,17 +910,17 @@
       </div>
 
       <div class="step">
-        <h3>💰 ПРИВЛЕЧЕНИЕ ИНВЕСТОРА</h3>
+        <h3><i class="fa-solid fa-handshake"></i> ПРИВЛЕЧЕНИЕ ИНВЕСТОРА</h3>
         <p>Для выкупа авто мы привлекаем инвесторов. То есть вас. Оформляем договор залога - объект находится под вашим полным контролем</p>
       </div>
 
       <div class="step">
-        <h3>🔧 ПОВЫШЕНИЕ СТОИМОСТИ</h3>
+        <h3><i class="fa-solid fa-wrench"></i> ПОВЫШЕНИЕ СТОИМОСТИ</h3>
         <p>Перед продажей проводим ремонт: косметический или комплексный (при необходимости). Цель - улучшить внешний вид и увеличить ликвидность. Это позволяет продать объект по максимальной рыночной цене</p>
       </div>
 
       <div class="step">
-        <h3>💸 ПРОДАЖА ОБЪЕКТА</h3>
+        <h3><i class="fa-solid fa-tags"></i> ПРОДАЖА ОБЪЕКТА</h3>
         <p>Находим покупателя по рыночной стоимости - 450.000-500.000₽</p>
         <div class="step-example">
           Разница между ценой выкупа составляет прибыль 230.000-280.000₽
@@ -910,7 +928,7 @@
       </div>
 
       <div class="step">
-        <h3>📈 РАСПРЕДЕЛЕНИЕ ПРИБЫЛИ</h3>
+        <h3><i class="fa-solid fa-chart-line"></i> РАСПРЕДЕЛЕНИЕ ПРИБЫЛИ</h3>
         <p>После сделки:</p>
         <ul style="margin-left: 20px; margin-top: 10px;">
           <li>Инвестор получает прибыль</li>
@@ -921,7 +939,7 @@
 
     <div class="cta-section">
       <a href="https://t.me/TorgiHub" class="cta-button" target="_blank">
-        📱 Каталог отобранных лотов
+        Каталог отобранных лотов
       </a>
     </div>
   </div>
@@ -933,32 +951,32 @@
 
     <div class="guarantees-grid">
       <div class="guarantee-item">
-        <h3>🔐 ЭЦП И АККРЕДИТАЦИЯ</h3>
+        <h3>ЭЦП И АККРЕДИТАЦИЯ</h3>
         <p>На 52 электронных площадках для участия в торгах</p>
       </div>
 
       <div class="guarantee-item">
-        <h3>🛡️ НАДЕЖНОСТЬ</h3>
+        <h3>НАДЕЖНОСТЬ</h3>
         <p>Вы инвестируете в ликвидное имущество под залог, оно переходит в вашу собственность. Стоимость залогового имущества выше суммы инвестиций</p>
       </div>
 
       <div class="guarantee-item">
-        <h3>🎯 ВЫБОР</h3>
+        <h3>ВЫБОР</h3>
         <p>У вас есть возможность самому решить в какой конкретный лот инвестировать</p>
       </div>
 
       <div class="guarantee-item">
-        <h3>👁️ ОТКРЫТОСТЬ</h3>
+        <h3>ОТКРЫТОСТЬ</h3>
         <p>Всегда можно приехать на объект торгов и лично посмотреть, во что вы инвестируете</p>
       </div>
 
       <div class="guarantee-item">
-        <h3>⚖️ ЮРИДИЧЕСКАЯ БЕЗОПАСНОСТЬ</h3>
+        <h3>ЮРИДИЧЕСКАЯ БЕЗОПАСНОСТЬ</h3>
         <p>Работаем только в рамках 127-ФЗ, где нет рисков возврата имущества</p>
       </div>
 
       <div class="guarantee-item">
-        <h3>💳 ОПЛАТА</h3>
+        <h3>ОПЛАТА</h3>
         <p>Оплата по факту участие в торгах от 5.000₽. Полная оплата осуществляется по договору по факту победы на торгах</p>
       </div>
     </div>
@@ -972,37 +990,37 @@
 
     <div class="types-grid">
       <div class="type-card">
-        <h3>🏢 Недвижимость</h3>
+        <h3>Недвижимость</h3>
         <p>Коммерческие помещения, квартиры, парковочные места, дома, гаражи, офисные здания, магазины, автозаправки, заводы, складские помещения, земельные участки</p>
       </div>
 
       <div class="type-card">
-        <h3>🚗 Транспорт</h3>
+        <h3>Транспорт</h3>
         <p>Автомобили, вертолеты, самолеты, суда, запчасти и т.д.</p>
       </div>
 
       <div class="type-card">
-        <h3>🚜 Спецтехника</h3>
+        <h3>Спецтехника</h3>
         <p>Экскаваторы, погрузчики, бульдозеры, краны, тракторы, самосвалы, фуры, сельхозтехника, станки, оборудование и т.д.</p>
       </div>
 
       <div class="type-card">
-        <h3>⚡ Коммуникации</h3>
+        <h3>Коммуникации</h3>
         <p>Тепло-, водо- и газоснабжение, трансформаторные станции и пр.</p>
       </div>
 
       <div class="type-card">
-        <h3>💻 Офисная техника</h3>
+        <h3>Офисная техника</h3>
         <p>Офисная техника и мебель, компьютеры, серверы, системные блоки, мобильные телефоны и т.п.</p>
       </div>
 
       <div class="type-card">
-        <h3>📈 Ценные бумаги</h3>
+        <h3>Ценные бумаги</h3>
         <p>Акции, облигации, векселя</p>
       </div>
 
       <div class="type-card">
-        <h3>💰 Долговые обязательства</h3>
+        <h3>Долговые обязательства</h3>
         <p>Права требования, дебиторская задолженность</p>
       </div>
     </div>
@@ -1050,50 +1068,47 @@
   </div>
 </section>
 
-<section class="contact-section" id="contact">
-  <div class="container">
-    <h2 class="section-title">Остались вопросы?</h2>
-    <p style="margin-bottom: 40px; font-size: 1.1rem; color: #a0a0a0;">Оставьте заявку и мы свяжемся с вами для консультации</p>
+<!--<section class="contact-section" id="contact">-->
+<!--  <div class="container">-->
+<!--    <h2 class="section-title">Остались вопросы?</h2>-->
+<!--    <p style="margin-bottom: 40px; font-size: 1.1rem; color: #a0a0a0;">Оставьте заявку и мы свяжемся с вами для консультации</p>-->
 
-    <div class="contact-form">
-      <form onsubmit="handleSubmit(event)">
-        <div class="form-group">
-          <label for="name">Ваше имя</label>
-          <input type="text" id="name" name="name" required>
-        </div>
-        <div class="form-group">
-          <label for="phone">Номер телефона</label>
-          <input type="tel" id="phone" name="phone" required>
-        </div>
-        <button type="submit" class="submit-btn">Отправить заявку</button>
-      </form>
-    </div>
-  </div>
-</section>
+<!--    <div class="contact-form">-->
+<!--      <form onsubmit="handleSubmit(event)">-->
+<!--        <div class="form-group">-->
+<!--          <label for="name">Ваше имя</label>-->
+<!--          <input type="text" id="name" name="name" required>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label for="phone">Номер телефона</label>-->
+<!--          <input type="tel" id="phone" name="phone" required>-->
+<!--        </div>-->
+<!--        <button type="submit" class="submit-btn">Отправить заявку</button>-->
+<!--      </form>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
 
 <footer>
   <div class="container">
     <div class="footer-content">
       <div class="footer-section">
         <h3>Контакты</h3>
-        <p>📞 +7 (XXX) XXX-XX-XX</p>
-        <p>📧 info@torgihub.ru</p>
+        <p>📞 +7 (921) 177-78-52</p>
+        <p>+7 (985) 330-77-72</p>
+        <p>📧 torgihub@yandex.ru</p>
       </div>
       <div class="footer-section">
         <h3>Социальные сети</h3>
         <a href="https://t.me/TorgiHub" target="_blank">📱 Telegram канал</a>
-        <a href="#">🌐 ВКонтакте</a>
-        <a href="#">📸 Instagram</a>
-      </div>
-      <div class="footer-section">
-        <h3>Офис</h3>
-        <p>📍 г. Екатеринбург</p>
-        <p>ул. Примерная, 123</p>
-        <p>офис 456</p>
+        <a href="https://vk.com/torgihub1">🌐 ВКонтакте</a>
+        <a href="https://www.instagram.com/gromovllya?igsh=ZTVxYTBpMHFocXpy">📸 Instagram</a>
       </div>
     </div>
     <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 30px; color: #666;">
       <p>&copy; 2025 TorgiHub. Все права защищены.</p>
+      <p>ИП Крупко Иван Сергеевич</p>
+      <p>ИНН 519056311653</p>
     </div>
   </div>
 </footer>
@@ -1120,6 +1135,13 @@
   function initExamplesAnimation() {
     exampleCards = document.querySelectorAll('.example-card');
 
+    // Установить фон-картинку для каждой карточки через CSS переменную
+    exampleCards.forEach(card => {
+      if (card.dataset.image) {
+        card.style.setProperty('--bg-image', 'url(' + card.dataset.image + ')');
+      }
+    });
+
     const observerOptions = {
       root: null,
       rootMargin: '0px 0px -20% 0px',
@@ -1133,7 +1155,6 @@
           setTimeout(() => {
             entry.target.classList.add('animate-in');
           }, cardIndex * 200);
-
           cardObserver.unobserve(entry.target);
         }
       });
